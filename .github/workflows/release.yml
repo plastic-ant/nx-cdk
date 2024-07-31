@@ -1,54 +1,106 @@
 name: release
 
 on:
-  workflow_dispatch:
-    inputs:
-      version:
-        type: string
-        description: The version to use for the release.
-        default: ""
-      dry-run:
-        type: boolean
-        default: true
   push:
-    branches:
-      - "main"
+    branches: ["main"]
+  workflow_dispatch:
 
 concurrency:
   group: ${{ format('{0}-{1}-{2}', github.workflow, github.job, github.event.ref) }}
   cancel-in-progress: false
 
 jobs:
-  main:
+  release:
     runs-on: ubuntu-latest
+    permissions: write-all
+    env:
+      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      NPM_CONFIG_PROVENANCE: true
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-
-      - run: |
-          git config user.name "${GITHUB_ACTOR}"
-          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: "yarn"
           cache-dependency-path: "yarn.lock"
+          registry-url: "https://registry.npmjs.org"
+          scope: "plastic-ant"
+
+      - run: npm whoami && echo "NPM credentials are valid" || (echo "NPM credentials are invalid or have expired." && exit 1)
+
+      - name: Setup Git
+        run: |
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 
       - run: yarn install --immutable
 
       - uses: nrwl/nx-set-shas@v4
 
-      - run: npx nx affected -t lint test build
-
-      - run: npx nx release version --dry-run=${{ env.DRY_RUN }} ${{ env.VERSION }}
+      - name: Version
+        run: npx nx run nx-cdk:version --verbose
         env:
-          GITHUB_TOKEN: ${{ steps.create-release-app-token.outputs.token }}
-          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry-run }}
-          VERSION: ${{ github.event_name == 'push' && '' || inputs.version }}
-          NX_VERBOSE_LOGGING: ${{ runner.debug && true || false }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - run: |
-          git push
-          git push --tags
+      - name: Tag last-release
+        run: |
+          git tag -f last-release
+          git push origin last-release --force
+
+# name: release
+
+# on:
+#   workflow_dispatch:
+#     inputs:
+#       version:
+#         type: string
+#         description: The version to use for the release.
+#         default: ""
+#       dry-run:
+#         type: boolean
+#         default: true
+#   push:
+#     branches:
+#       - "main"
+
+# concurrency:
+#   group: ${{ format('{0}-{1}-{2}', github.workflow, github.job, github.event.ref) }}
+#   cancel-in-progress: false
+
+# jobs:
+#   main:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v4
+#         with:
+#           fetch-depth: 0
+
+#       - run: |
+#           git config user.name "${GITHUB_ACTOR}"
+#           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+
+#       - uses: actions/setup-node@v4
+#         with:
+#           node-version: 20
+#           cache: "yarn"
+#           cache-dependency-path: "yarn.lock"
+
+#       - run: yarn install --immutable
+
+#       - uses: nrwl/nx-set-shas@v4
+
+#       - run: npx nx affected -t lint test build
+
+#       - run: npx nx release version --dry-run=${{ env.DRY_RUN }} ${{ env.VERSION }}
+#         env:
+#           GITHUB_TOKEN: ${{ steps.create-release-app-token.outputs.token }}
+#           DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry-run }}
+#           VERSION: ${{ github.event_name == 'push' && '' || inputs.version }}
+#           NX_VERBOSE_LOGGING: ${{ runner.debug && true || false }}
+
+#       - run: |
+#           git push
+#           git push --tags
