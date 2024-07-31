@@ -10,6 +10,7 @@ An Nx (Project Crystal) plugin for developing with the [aws-cdk](https://docs.aw
 
 - [Install](#install)
 - [Usage](#usage)
+- [Example](#example)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -42,6 +43,12 @@ options:
   deployTargetName       (optional) generated target deploy, default cdk-deploy
   bootstrapTargetName    (optional) generated target bootstrap, default cdk-bootstrap
 ```
+
+## Example
+
+This repo contains a very basic example to demo how the plugin works and how to pass additional cli arguments [here](https://github.com/plastic-ant/nx-cdk/tree/main/nx-cdk-app).
+
+<img src="../docs/images/project-dets.png" width="60%" height="auto"/>
 
 ## License
 
