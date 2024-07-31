@@ -19,6 +19,12 @@ jobs:
   Publish:
     runs-on: ubuntu-latest
     permissions: write-all
+
+    env:
+      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      NPM_CONFIG_PROVENANCE: true
+      NX_VERBOSE_LOGGING: ${{ runner.debug && true || false }}
+
     steps:
       - uses: actions/checkout@v3
         with:
@@ -47,9 +53,6 @@ jobs:
       - run: npx nx release publish --first-release --dry-run=${{ env.DRY_RUN }}
         env:
           DRY_RUN: ${{ github.ref_type != 'tag' || (github.event_name == 'workflow_dispatch' && inputs.dry-run) }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_CONFIG_PROVENANCE: true
-          NX_VERBOSE_LOGGING: ${{ runner.debug && true || false }}
 
       - run: |
           git push
