@@ -6,11 +6,11 @@ services:
     #  - .env.local
     build:
       context: ../
-      dockerfile: ../.devcontainer/template/dockerfile
+      dockerfile: ../.devcontainer/nx-cdk/dockerfile
       args:
-        NODE_VARIANT: 18-bullseye
+        NODE_VARIANT: 20-bullseye
     volumes:
       - ${HOME}${USERPROFILE}/.aws:/home/node/.aws
       - ${HOME}${USERPROFILE}/.ssh:/home/node/.ssh
-      - ../..:/pas-nx-template:cached
+      - ../..:/pas-nx-cdk:cached
     command: sleep infinity

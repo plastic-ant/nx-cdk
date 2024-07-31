@@ -1,7 +1,12 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "workspaceLayout": { "appsDir": "projects", "libsDir": "libs" },
-  "cli": { "packageManager": "yarn" },
+  "workspaceLayout": {
+    "appsDir": "projects",
+    "libsDir": "libs"
+  },
+  "cli": {
+    "packageManager": "yarn"
+  },
   "defaultProject": "none!",
   "namedInputs": {
     "default": ["{projectRoot}/**/*", "sharedGlobals"],
@@ -17,10 +22,15 @@
   },
   "plugins": [
     {
+      "plugin": "@plastic-ant/nx-cdk",
+      "exclude": ["nx-cdk"]
+    },
+    {
       "plugin": "@nx/jest/plugin",
       "options": {
         "targetName": "test"
-      }
+      },
+      "exclude": ["projects/nx-cdk-app-e2e/**/*"]
     },
     {
       "plugin": "@nx/vite/plugin",
@@ -78,6 +88,13 @@
       "cache": true,
       "inputs": ["default", "{workspaceRoot}/.eslintrc.json", "{workspaceRoot}/.eslintignore"]
     },
-    "e2e": { "cache": true }
+    "e2e": {
+      "cache": true
+    },
+    "@nx/esbuild:esbuild": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
+    }
   }
 }

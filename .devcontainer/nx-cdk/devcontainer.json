@@ -1,11 +1,11 @@
 {
-  "name": "🐋@pas-nx-template",
+  "name": "🐋@pas-nx-cdk",
   "dockerComposeFile": ["docker-compose.yml"],
   "service": "repo",
-  "workspaceFolder": "/pas-nx-template",
+  "workspaceFolder": "/pas-nx-cdk",
   "remoteUser": "node",
-  "initializeCommand": ".devcontainer/init-command.sh .devcontainer/template",
-  "postStartCommand": ".devcontainer/template/post-start-command.sh",
+  "initializeCommand": ".devcontainer/init-command.sh .devcontainer/nx-cdk",
+  "postStartCommand": ".devcontainer/nx-cdk/post-start-command.sh",
   "remoteEnv": { "NODE_ENV": "development", "TSS_REMOTE_DEBUG": "9229" },
   "containerEnv": {
     "IS_CONTAINER": "1",
