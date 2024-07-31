@@ -44,7 +44,7 @@ jobs:
 
       - run: npx nx affected -t lint test build
 
-      - run: npx nx release publish --dry-run=${{ env.DRY_RUN }}
+      - run: npx nx release publish --first-release --dry-run=${{ env.DRY_RUN }}
         env:
           DRY_RUN: ${{ github.ref_type != 'tag' || (github.event_name == 'workflow_dispatch' && inputs.dry-run) }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
