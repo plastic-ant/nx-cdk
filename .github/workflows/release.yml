@@ -41,7 +41,9 @@ jobs:
       - uses: nrwl/nx-set-shas@v4
 
       - name: Version
-        run: npx nx run nx-cdk:version --verbose
+        run: |
+          npx nx affected -t lint test build
+          npx nx run nx-cdk:version --verbose
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
