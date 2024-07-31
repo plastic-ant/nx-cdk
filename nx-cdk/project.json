@@ -1,6 +1,6 @@
 {
   "name": "nx-cdk",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/nx-cdk/src",
   "projectType": "library",
   "tags": ["#nx-plugin"],

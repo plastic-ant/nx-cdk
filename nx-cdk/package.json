@@ -4,10 +4,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/plastic-ant/packages/tree/main/packages/nx-cdk"
+    "url": "https://github.com/plastic-ant/nx-cdk"
   },
   "keywords": [
     "nx",
+    "crystal",
     "aws",
     "cdk",
     "cloud"

@@ -1,12 +1,6 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "workspaceLayout": {
-    "appsDir": "projects",
-    "libsDir": "libs"
-  },
-  "cli": {
-    "packageManager": "yarn"
-  },
+  "cli": { "packageManager": "yarn" },
   "defaultProject": "none!",
   "namedInputs": {
     "default": ["{projectRoot}/**/*", "sharedGlobals"],

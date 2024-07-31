@@ -15,8 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@plastic-ant/nx-cdk": ["projects/nx-cdk/src/index.ts"],
-      "nx-cdk": ["projects/nx-cdk/src/index.ts"]
+      "@plastic-ant/nx-cdk": ["nx-cdk/src/index.ts"],
+      "nx-cdk": ["nx-cdk/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

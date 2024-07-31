@@ -3,9 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "workspaces": [
-    "libs/**/*",
-    "projects/**/*",
-    "tools/plugins/**/*"
+    "nx-cdk",
+    "nx-cdk-app"
   ],
   "private": true,
   "devDependencies": {

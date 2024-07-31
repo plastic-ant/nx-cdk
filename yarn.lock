@@ -3238,9 +3238,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@plastic-ant/nx-cdk@workspace:projects/nx-cdk":
+"@plastic-ant/nx-cdk@workspace:nx-cdk":
   version: 0.0.0-use.local
-  resolution: "@plastic-ant/nx-cdk@workspace:projects/nx-cdk"
+  resolution: "@plastic-ant/nx-cdk@workspace:nx-cdk"
   dependencies:
     "@nx/devkit": "npm:19.5.3"
     json-schema-to-typescript: "npm:^15.0.0"
@@ -10979,9 +10979,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nx-cdk-app@workspace:projects/nx-cdk-app":
+"nx-cdk-app@workspace:nx-cdk-app":
   version: 0.0.0-use.local
-  resolution: "nx-cdk-app@workspace:projects/nx-cdk-app"
+  resolution: "nx-cdk-app@workspace:nx-cdk-app"
   dependencies:
     aws-cdk: "npm:2.150.0"
     aws-cdk-lib: "npm:2.150.0"
