@@ -27,8 +27,8 @@
     "json-schema-to-typescript": "^15.0.0"
   },
   "dependencies": {
-    "@nx/devkit": "19.5.3",
-    "nx": "19.5.2"
+    "@nx/devkit": "19.5.4",
+    "nx": "19.5.4"
   },
   "peerDependencies": {
     "aws-cdk": "^2.149.0",

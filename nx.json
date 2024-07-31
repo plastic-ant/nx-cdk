@@ -23,8 +23,7 @@
       "plugin": "@nx/jest/plugin",
       "options": {
         "targetName": "test"
-      },
-      "exclude": ["projects/nx-cdk-app-e2e/**/*"]
+      }
     },
     {
       "plugin": "@nx/vite/plugin",
@@ -40,7 +39,29 @@
       }
     }
   ],
+  "release": {
+    "projects": ["nx-cdk"],
+    "projectsRelationship": "independent",
+    "changelog": {
+      "projectChangelogs": {
+        "createRelease": "github"
+      }
+    },
+    "git": {
+      "tag": true,
+      "commit": true
+    },
+    "version": {
+      "conventionalCommits": true
+    }
+  },
   "targetDefaults": {
+    "nx-release-publish": {
+      "dependsOn": ["build"],
+      "options": {
+        "packageRoot": "{workspaceRoot}/dist/{projectRoot}"
+      }
+    },
     "prebuild": {
       "cache": true,
       "dependsOn": ["^prebuild"],
