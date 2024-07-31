@@ -70,7 +70,7 @@ async function createNodesInternal(configFilePath, options, context, targetsCach
   const projectRoot = dirname(configFilePath);
   const siblingFiles = readdirSync(join(context.workspaceRoot, projectRoot));
 
-  if (!siblingFiles.includes("project.json") && !siblingFiles.includes("package.json")) {
+  if (!siblingFiles.includes("package.json") && !siblingFiles.includes("project.json")) {
     return {};
   }
 
