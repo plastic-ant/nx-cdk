@@ -50,3 +50,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_CONFIG_PROVENANCE: true
           NX_VERBOSE_LOGGING: ${{ runner.debug && true || false }}
+
+      - run: |
+          git push
+          git push --tags
