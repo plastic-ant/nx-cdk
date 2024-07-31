@@ -1,0 +1,10 @@
+**/node_modules/**
+**/.nx/**
+**/generators/**/files
+**/executors/**/files
+**/node_modules
+node_modules
+dist
+coverage
+.nx
+.yarn

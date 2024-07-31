@@ -1,0 +1,18 @@
+# Add files here to ignore them from prettier formatting
+**/tmp
+**/.nx
+**/generators/**/files
+**/executors/**/files
+**/build
+**/node_modules
+.idea
+coverage
+**/dist
+/.idea
+/.fleet
+/coverage
+/dist
+/.env
+CODEOWNERS
+/.nx/cache
+/.nx/workspace-data

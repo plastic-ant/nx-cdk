@@ -1,0 +1,83 @@
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "workspaceLayout": { "appsDir": "projects", "libsDir": "libs" },
+  "cli": { "packageManager": "yarn" },
+  "defaultProject": "none!",
+  "namedInputs": {
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "sharedGlobals": ["{workspaceRoot}/tsconfig.base.json"],
+    "production": [
+      "default",
+      "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
+      "!{projectRoot}/tsconfig.spec.json",
+      "!{projectRoot}/jest.config.[jt]s",
+      "!{projectRoot}/src/test-setup.[jt]s",
+      "!{projectRoot}/.eslintrc.json"
+    ]
+  },
+  "plugins": [
+    {
+      "plugin": "@nx/jest/plugin",
+      "options": {
+        "targetName": "test"
+      }
+    },
+    {
+      "plugin": "@nx/vite/plugin",
+      "options": {
+        "buildTargetName": "build",
+        "serveTargetName": "serve"
+      }
+    },
+    {
+      "plugin": "@nx/eslint/plugin",
+      "options": {
+        "targetName": "lint"
+      }
+    }
+  ],
+  "targetDefaults": {
+    "prebuild": {
+      "cache": true,
+      "dependsOn": ["^prebuild"],
+      "inputs": ["production", "^production"]
+    },
+    "build": {
+      "cache": true,
+      "dependsOn": ["prebuild", "^build"],
+      "inputs": ["production", "^production"]
+    },
+    "lint": {
+      "dependsOn": ["prebuild"],
+      "inputs": [
+        "default",
+        "{workspaceRoot}/.eslintrc.json",
+        "{workspaceRoot}/tools/eslint-rules/**/*",
+        "{workspaceRoot}/tools/eslint-rules/**/*"
+      ],
+      "cache": true,
+      "configurations": {
+        "ci": {
+          "args": ["--quiet"]
+        }
+      }
+    },
+    "test": {
+      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
+      "cache": true,
+      "options": {
+        "args": ["--passWithNoTests"]
+      },
+      "configurations": {
+        "ci": {
+          "args": ["--ci", "code-coverage", "--passWithNoTests"]
+        }
+      }
+    },
+    "@nx/eslint:lint": {
+      "cache": true,
+      "inputs": ["default", "{workspaceRoot}/.eslintrc.json", "{workspaceRoot}/.eslintignore"]
+    },
+    "e2e": { "cache": true }
+  }
+}
