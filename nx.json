@@ -42,19 +42,37 @@
   "release": {
     "projects": ["nx-cdk"],
     "projectsRelationship": "independent",
-    "changelog": {
-      "projectChangelogs": {
-        "createRelease": "github"
-      }
-    },
     "version": {
       "conventionalCommits": true,
+      "generatorOptions": {
+        "fallbackCurrentVersionResolver": "disk"
+      },
       "git": {
-        "tag": true,
-        "commit": true,
-        "commitMessage": "chore({projectName}): release {version} [skip-ci]"
+        "commitMessage": "chore: release {version} 🚀 [skip ci]"
+      }
+    },
+    "changelog": {
+      "automaticFromRef": true,
+      "workspaceChangelog": {
+        "createRelease": "github",
+        "renderOptions": {
+          "authors": false
+        }
       }
     }
+    // "changelog": {
+    //   "projectChangelogs": {
+    //     "createRelease": "github"
+    //   }
+    // },
+    // "version": {
+    //   "conventionalCommits": true,
+    //   "git": {
+    //     "tag": true,
+    //     "commit": true,
+    //     "commitMessage": "chore({projectName}): release {version} [skip-ci]"
+    //   }
+    // }
   },
   "targetDefaults": {
     "nx-release-publish": {
