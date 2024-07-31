@@ -49,7 +49,7 @@ jobs:
 
       - run: npx nx affected -t lint test build
 
-      - run: npx nx nx-cdk:build --skip-nx-cache
+      - run: npx nx run nx-cdk:build --skip-nx-cache
 
       - run: npx nx release publish --dry-run=${{ env.DRY_RUN }}
         env:
