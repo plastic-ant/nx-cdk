@@ -49,7 +49,8 @@
     },
     "git": {
       "tag": true,
-      "commit": true
+      "commit": true,
+      "commitMessage": "chore({projectName}): release {version} [skip-ci]"
     },
     "version": {
       "conventionalCommits": true
