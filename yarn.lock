@@ -1577,20 +1577,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/config-nx-scopes@npm:^19.3.1":
-  version: 19.3.1
-  resolution: "@commitlint/config-nx-scopes@npm:19.3.1"
-  dependencies:
-    "@commitlint/types": "npm:^19.0.3"
-  peerDependencies:
-    nx: ">=14.0.0"
-  peerDependenciesMeta:
-    nx:
-      optional: true
-  checksum: 10/a45cbaff1aab18bcac83f23fbe0a38eed3a7cfd4480f394a24d28b7c71af809cf9a54495ab929af8c722d03c4aca3b02557826984c12f830b8b3fd3048b76d94
-  languageName: node
-  linkType: hard
-
 "@commitlint/config-validator@npm:^19.0.3":
   version: 19.0.3
   resolution: "@commitlint/config-validator@npm:19.0.3"
@@ -11606,7 +11592,6 @@ __metadata:
   dependencies:
     "@commitlint/cli": "npm:^19.3.0"
     "@commitlint/config-conventional": "npm:^19.2.2"
-    "@commitlint/config-nx-scopes": "npm:^19.3.1"
     "@jscutlery/semver": "npm:^5.2.2"
     "@nx/devkit": "npm:19.5.4"
     "@nx/esbuild": "npm:19.5.4"
